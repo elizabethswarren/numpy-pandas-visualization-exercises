@@ -94,16 +94,24 @@ fruits.min()
 
 # 1.
 fruits.str.upper()
+#Instructor Answer: fruits.capitalize()
 
 # 2.
 fruits.str.count('a')
+#Instructor Answer: to get the total number of a's :
+# fruits.str.count('a').sum()
 
 # 3.
 fruits.str.count("a|e|i|o|u")
+# Instructor Answer: fruits.str.count('[aeiou]')
 
 # 4.
 alpha = "[a-z]"
 fruits[fruits.str.count(alpha).max()]
+# Instructor Answer: 
+# fruits.apply(len).nlargest(1)
+# max(fruits, key=len)
+# 
 
 # 5.
 fruits[fruits.str.count(alpha) > 5]
@@ -119,3 +127,74 @@ fruits[fruits.str.contains("apple")]
 
 # 9.
 fruits[fruits.str.count("a|e|i|o|u").max()]
+#Instructor Answer :fruits.str.count(r'[aeiou]').nlargest(n=1, keep='all')
+
+## Exercises Part III
+
+# 1. Which letter occurs the most frequently in the letters Series?
+
+# 2. Which letter occurs the Least frequently?
+
+# 3. How many vowels are in the Series?
+
+# 4. How many consonants are in the Series?
+
+# 5. Create a Series that has all of the same letters but uppercased.
+
+# 6. Create a bar plot of the frequencies of the 6 most commonly occuring letters.
+
+string_list = ['hnvidduckkqxwymbimkccexbkmqygkxoyndmcxnwqarhyffsjpsrabtjzsypmzadfavyrnndndvswreauxovncxtwzpwejilzjrmmbbgbyxvjtewqthafnbkqplarokkyydtubbmnexoypulzwfhqvckdpqtpoppzqrmcvhhpwgjwupgzhiofohawytlsiyecuproguy']
+letter_list = [i for let in string_list for i in let]
+letter_series = pd.Series(letter_list)
+
+# 1.
+letter_series.value_counts().head(1)
+
+# 2.
+letter_series.value_counts().tail(1)
+
+# 3.
+vowels = 'a|e|i|o|u'
+letter_series.str.contains(vowels).count()
+
+# 4.
+
+
+# 5.
+letter_series.str.upper()
+
+# 6.
+letter_series.value_counts().head(6).plot()
+
+
+## Exercise III part 2
+#How many elements are in the exam_scores Series?
+
+#Run the code to discover the minimum, the maximum, the mean, and the median scores for the exam_scores Series.
+
+#Plot the Series in a meaningful way and make sure your chart has a title and axis labels.
+
+#Write the code necessary to implement a curve for your exam_grades Series and save this as curved_grades. Add the necessary points to the highest grade to make it 100, and add the same number of points to every other score in the Series as well.
+
+#Use a method to convert each of the numeric values in the curved_grades Series into a categorical value of letter grades. For example, 86 should be a 'B' and 95 should be an 'A'. Save this as a Series named letter_grades.
+
+#Plot your new categorical letter_grades Series in a meaninful way and include a title and axis labels.
+
+exam_scores = pd.Series([60, 86, 75, 62, 93, 71, 60, 83, 95, 78, 65, 72, 69, 81, 96, 80, 85, 92, 82, 78])
+
+# 1.
+len(exam_scores)
+
+# 2.
+exam_scores.describe()
+
+# 3.
+
+
+# 4.
+
+
+# 5.
+
+
+# 6.
