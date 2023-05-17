@@ -27,35 +27,49 @@ fruits = pd.Series(["kiwi", "mango", "strawberry", "pineapple", "gala apple",
 
 # 1.
 len(fruits)
+# Instructor Answers: fruits.size
 
 # 2.
 fruits.index
 
 # 3.
 fruits.values
+#Instructor Answers: list(fruits.values)
 
 # 4.
 fruits.head()
+#Instructo Answers: fruits.dtypes
 
 # 5.
 fruits.head(5)
 fruits.tail(3)
 fruits.sample(2)
+#Instructor Answers: adding ? will return the docstrings
+# fruits[:5]
+# fruits[-3:]
 
 # 6.
 fruits.describe()
 
 # 7.
 fruits.unique()
+# Instructor Answer: set(fruits)
 
 # 8.
 len(fruits.unique())
+# Instructor Answer: fruits.nunique()
+# fruits.value_counts()
 
 # 9.
 fruits.mode()
+# Instructor Answer: fruits.value_counts().index[0]
+#order_fruits = fruits.value_counts()
+#order_fruits.nlargest(n=1)
 
 # 10.
 fruits.min()
+#Instructor Answer: order_fruits.tail(1)
+#order_fruits.nsmallest(n=1, keep='all')
 
 
 ## Exercises Part II
