@@ -56,3 +56,52 @@ fruits.mode()
 
 # 10.
 fruits.min()
+
+
+## Exercises Part II
+
+#Capitalize all the string values in fruits.
+
+#Count the letter "a" in all the string values (use string vectorization).
+
+#Output the number of vowels in each and every string value.
+
+#Write the code to get the longest string value from fruits.
+
+#Write the code to get the string values with 5 or more letters in the name.
+
+#Find the fruit(s) containing the letter "o" two or more times.
+
+#Write the code to get only the string values containing the substring "berry".
+
+#Write the code to get only the string values containing the substring "apple".
+
+#Which string value contains the most vowels?
+
+# 1.
+fruits.str.upper()
+
+# 2.
+fruits.str.count('a')
+
+# 3.
+fruits.str.count("a|e|i|o|u")
+
+# 4.
+alpha = "[a-z]"
+fruits[fruits.str.count(alpha).max()]
+
+# 5.
+fruits[fruits.str.count(alpha) > 5]
+
+# 6.
+fruits[fruits.str.count("o") >= 2]
+
+# 7.
+fruits[fruits.str.contains("berry")]
+
+# 8.
+fruits[fruits.str.contains("apple")]
+
+# 9.
+fruits[fruits.str.count("a|e|i|o|u").max()]
