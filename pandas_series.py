@@ -192,7 +192,7 @@ exam_scores.describe()
 
 
 # 4.
-
+curved_grades = exam_scores + (100.00 - max(exam_scores))
 
 # 5.
 
