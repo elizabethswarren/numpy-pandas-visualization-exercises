@@ -146,6 +146,7 @@ fruits[fruits.str.count("a|e|i|o|u").max()]
 string_list = ['hnvidduckkqxwymbimkccexbkmqygkxoyndmcxnwqarhyffsjpsrabtjzsypmzadfavyrnndndvswreauxovncxtwzpwejilzjrmmbbgbyxvjtewqthafnbkqplarokkyydtubbmnexoypulzwfhqvckdpqtpoppzqrmcvhhpwgjwupgzhiofohawytlsiyecuproguy']
 letter_list = [i for let in string_list for i in let]
 letter_series = pd.Series(letter_list)
+# Instructor Answers: letters= pd.Series(list(letters))
 
 # 1.
 letter_series.value_counts().head(1)
@@ -156,9 +157,12 @@ letter_series.value_counts().tail(1)
 # 3.
 vowels = 'a|e|i|o|u'
 letter_series.str.contains(vowels).count()
+# Instructor Answer: def is_vowel(some_word):
+#                        return some_word in ['a', 'e', 'i', 'o', 'u']
+# letter.str.lower().apply(is_vowel).sum()
 
 # 4.
-
+(~letter.str.lower().apply(vowels).sum())
 
 # 5.
 letter_series.str.upper()
@@ -166,8 +170,53 @@ letter_series.str.upper()
 # 6.
 letter_series.value_counts().head(6).plot()
 
+## Exercise III Part 2
+# 1. What is the data type of the numbers Series?
 
-## Exercise III part 2
+# 2. How many elements are in the number Series?
+
+# 3. Perform the necessary manipulations by accessing Series attributes and methods to convert the numbers Series to a numeric data type.
+
+# 4. Run the code to discover the maximum value from the Series.
+
+# 5. Run the code to discover the minimum value from the Series.
+
+# 6. What is the range of the values in the Series?
+
+# 7. Bin the data into 4 equally sized intervals or bins and output how many values fall into each bin.
+
+# 8. Plot the binned data in a meaningful way. Be sure to include a title and axis labels.
+
+numbers = pd.Series(['$796,459.41', '$278.60', '$482,571.67', '$4,503,915.98', '$2,121,418.3', '$1,260,813.3', '$87,231.01', '$1,509,175.45', '$4,138,548.00', '$2,848,913.80', '$594,715.39', '$4,789,988.17', '$4,513,644.5', '$3,191,059.97', '$1,758,712.24', '$4,338,283.54', '$4,738,303.38', '$2,791,759.67', '$769,681.94', '$452,650.23'])
+
+# 1. object
+
+# 2. 19
+len(numbers)
+# Instructor Answers: numbers.size, numbers.shape
+
+# 3.
+float_numbers = numbers.replace(regex={'$': '', ',': ''})
+#Instructor Answers: numbers = numbers.str.replace('$','')
+# numbers = numbers.str.replace(',','')
+# new_numbers = numbers.astype(float)
+
+# 4.
+float_numbers.max()
+
+# 5.
+float_numbers.min()
+
+# 6.
+float_numbers.max() - float_numbers.min()
+
+# 7.
+pd.cut(float_numbers, 4).value_counts().sort_index()
+
+# 8.
+pd.cut(float_numbers, 4).value_counts().sort_index().plot.bar()
+
+## Exercise III part 3
 #How many elements are in the exam_scores Series?
 
 #Run the code to discover the minimum, the maximum, the mean, and the median scores for the exam_scores Series.
@@ -184,6 +233,7 @@ exam_scores = pd.Series([60, 86, 75, 62, 93, 71, 60, 83, 95, 78, 65, 72, 69, 81,
 
 # 1.
 len(exam_scores)
+# Instructor Answer: exam_scores.shape
 
 # 2.
 exam_scores.describe()
@@ -195,6 +245,11 @@ exam_scores.describe()
 curved_grades = exam_scores + (100.00 - max(exam_scores))
 
 # 5.
-
+letter_grades = pd.cut(curved_grades, bins=5,
+                      labels=["F","D","C","B","A"])
+# Instructor Answer: bin_edges = [0, 70, 80, 90, 100]
+# bin_labels=["F","D","C","B","A"]
+# letter_grades = pd.cut(curved_grades, bins=bin_edges, labels=bin_labels)
 
 # 6.
+letter_grades.value_counts().plot.bar()
