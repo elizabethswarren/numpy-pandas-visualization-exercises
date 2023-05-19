@@ -5,6 +5,8 @@
 # a. Create a column named passing_english that indicates whether each student has a passing grade in english.
 df['passing_english'] = df.english > 70
 
+#Instructor Answer: df.assign
+
 # b. Sort the english grades by the passing_english column. How are duplicates handled?
 df.sort_values(by='passing_english')
 
@@ -17,6 +19,8 @@ df.sort_values(by=['passing_english','english'])
 # e. Calculate each students overall grade and add it as a column on the dataframe. The overall grade is the average of the math, english, and reading grades.
 
 df['overall_grade'] = (df.math + df.english + df.reading)/ 3
+
+# Instructor Answer: students_df['overall_grade']=students_df[['english','math','reading']].mean(axis=1)
 
 # 2. Load the mpg dataset. Read the documentation for the dataset and use it for the following questions:
 
@@ -33,6 +37,8 @@ mpg_df.rename(columns={'cty':'city'})
 mpg_df.rename(columns={'hwy':'highway'})
 # f. Do any cars have better city mileage than highway mileage? No
 mpg_df[mpg_df['cty'] > mpg_df['hwy']]
+#Instructor Answer:(mpg_df['city'] > mpg_df['highway']).any()
+
 # g. Create a column named mileage_difference this column should contain the difference between highway and city mileage for each car.
 mpg_df['mileage_difference'] = mpg_df['hwy'] - mpg_df['cty']
 # h. Which car (or cars) has the highest mileage difference?
@@ -44,16 +50,23 @@ mpg_df['average_mileage'] = (mpg_df['hwy'] - mpg_df['cty']) / 2
 # k. Which dodge car has the best average mileage? The worst?
 mpg_df.sort_values(by='average_mileage')
 mpg_df.sort_values(by='average_mileage', ascending=False)
+#Instructor Answer: dodge_cars = mpg_df['manufacture'] == 'dodge'
+#dodge_cars.sort_values('average_milage').head(1)
+#dodge_cars.sort_values('average_milage').tail(1)
 
 # 3. Load the Mammals dataset. Read the documentation for it, and use the data to answer these questions:
 
-# a. How many rows and columns are there? 62 rows 2 columns
+# a. How many rows and columns are there? 107 rows 4 columns
 mammal_df.shape
-# b. What are the data types?
+# b. What are the data types? float and bool
 
 # c. Summarize the dataframe with .info and .describe
-mammal_df.info
-mammal_df.describe
-# d. What is the the weight of the fastest animal?
-# e. What is the overal percentage of specials?
+mammal_df.info()
+mammal_df.describe()
+# d. What is the the weight of the fastest animal? 55
+mammal_df.sort_values(by='speed', ascending=False)
+# e. What is the overal percentage of specials? 9.3%
+mammal_df['specials'].value_counts(normalize=True).mul(100)
 # f. How many animals are hoppers that are above the median speed? What percentage is this?
+median = mammal_df['speed'].median()
+mammal_df.hoppers == [(True &(mammal_df.speed > median)]
