@@ -31,19 +31,29 @@ mpg_df.describe
 mpg_df.rename(columns={'cty':'city'})
 # e. Rename the hwy column to highway.
 mpg_df.rename(columns={'hwy':'highway'})
-# f. Do any cars have better city mileage than highway mileage?
+# f. Do any cars have better city mileage than highway mileage? No
+mpg_df[mpg_df['cty'] > mpg_df['hwy']]
 # g. Create a column named mileage_difference this column should contain the difference between highway and city mileage for each car.
+mpg_df['mileage_difference'] = mpg_df['hwy'] - mpg_df['cty']
 # h. Which car (or cars) has the highest mileage difference?
+mpg_df.sort_values(by='mileage_difference', ascending=False)
 # i. Which compact class car has the lowest highway mileage? The best?
+mpg_df.sort_values(by='mileage_difference')
 # j. Create a column named average_mileage that is the mean of the city and highway mileage.
+mpg_df['average_mileage'] = (mpg_df['hwy'] - mpg_df['cty']) / 2
 # k. Which dodge car has the best average mileage? The worst?
-
+mpg_df.sort_values(by='average_mileage')
+mpg_df.sort_values(by='average_mileage', ascending=False)
 
 # 3. Load the Mammals dataset. Read the documentation for it, and use the data to answer these questions:
 
-# a. How many rows and columns are there?
+# a. How many rows and columns are there? 62 rows 2 columns
+mammal_df.shape
 # b. What are the data types?
+
 # c. Summarize the dataframe with .info and .describe
+mammal_df.info
+mammal_df.describe
 # d. What is the the weight of the fastest animal?
 # e. What is the overal percentage of specials?
 # f. How many animals are hoppers that are above the median speed? What percentage is this?
