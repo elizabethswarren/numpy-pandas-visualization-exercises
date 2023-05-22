@@ -1,5 +1,3 @@
-url = def get_db_url(db_name):
-    return f'mysql+pymysql://{user}:{password}@{host}/{db_name}'
 
 #Run python -m pip install pymysql from your terminal to install the mysql client (any folder is fine)
 #cd into your exercises folder for this module and run echo env.py >> .gitignore
@@ -68,3 +66,20 @@ mpg_df['is_automatic'] = np.where(mpg_df.trans.str.startswith('a'), 'True', "Fal
 mpg_df.groupby('manufacturer').average_mileage.max().sort_values(ascending=False).head(1)
 #Do automatic or manual cars have better miles per gallon?
 mpg_df.groupby('is_automatic').average_mileage.max()
+
+
+## Exercise Part 3
+# 1. Use your get_db_url function to help you explore the data from the chipotle database.
+
+# 2. What is the total price for each order?
+chipotle_orders_df['item_price'] = chipotle_orders_df.item_price.str.replace('$','').astype(float)
+order_totals = chipotle_orders_df.groupby('order_id').item_price.sum()
+# 3. What are the most popular 3 items?
+
+# 4. Which item has produced the most revenue?
+chipotle_orders_df['item_name'][chipotle_orders_df.quantity.max()]
+# 5. Join the employees and titles DataFrames together.
+
+# 6. For each title, find the hire date of the employee that was hired most recently with that title.
+
+# 7. Write the code necessary to create a cross tabulation of the number of titles by department. (Hint: this will involve a combination of SQL code to pull the necessary data and python/pandas code to perform the manipulations.)
